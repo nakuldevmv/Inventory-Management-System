@@ -21,7 +21,7 @@ function App() {
         params: { search: searchTerm },
       });
       setProducts(res.data);
-      console.log("Fetched products:", res.data);
+      // console.log("Fetched products:", res.data);
     } catch (error) {
       console.log("Error fetching products:", error);
     }
@@ -97,12 +97,14 @@ function App() {
         searchTerm={searchTerm}
         onSearchChange={handleSearchChange}
       />
+
       {editingProduct && (
         <ProductUpdate
           product={editingProduct}
           onUpdateProduct={updateProduct}
           onCancelEdit={handleCancelEdit}
         />
+        
       )}
     </div>
   );

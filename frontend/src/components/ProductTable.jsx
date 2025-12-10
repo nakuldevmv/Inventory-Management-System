@@ -4,7 +4,7 @@ import styles from "./ProductTable.module.css";
 
 export default function ProductTable(props) {
   const products = props.products;
-  console.log("ProductTable received products:", products);
+  // console.log("ProductTable received products:", products);
   const searchTerm = props.searchTerm || "";
 
   function handleSearchChange(event) {
