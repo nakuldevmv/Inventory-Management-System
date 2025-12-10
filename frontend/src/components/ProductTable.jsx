@@ -5,6 +5,13 @@ import styles from "./ProductTable.module.css";
 export default function ProductTable(props) {
   const products = props.products;
   console.log("ProductTable received products:", products);
+  const searchTerm = props.searchTerm || "";
+
+  function handleSearchChange(event) {
+    if (props.onSearchChange) {
+      return props.onSearchChange(event);
+    }
+  }
 
   function handleEditClick(product) {
     if (props.onEditProduct) {
@@ -76,7 +83,18 @@ export default function ProductTable(props) {
 
   return (
     <div className={styles.productTableContainer}>
-      <h2>Products</h2>
+      <div className={styles.headBox}>
+        <h2>Products</h2>
+
+        <input
+          type="text"
+          placeholder="🔍 Search by name or category"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className={styles.searchInput}
+        />
+      </div>
+
       <table className={styles.productTable} border="1" cellPadding="15">
         <thead style={{ textAlign: "center" }}>
           <tr>

@@ -5,19 +5,21 @@ import ProductForm from "./components/ProductForm";
 import ProductTable from "./components/ProductTable";
 import ProductUpdate from "./components/ProductUpdate";
 
-
 function App() {
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetchProducts();
-  }, []);
+  }, [searchTerm]);
 
   //GET
   async function fetchProducts() {
     try {
-      const res = await api.get("/products");
+      const res = await api.get("/products", {
+        params: { search: searchTerm },
+      });
       setProducts(res.data);
       console.log("Fetched products:", res.data);
     } catch (error) {
@@ -78,15 +80,22 @@ function App() {
     setEditingProduct(null);
   }
 
+  function handleSearchChange(event) {
+    setSearchTerm(event.target.value);
+  }
+
   return (
     <div className="App">
       <h1> Inventory Management System</h1>
 
       <ProductForm onAddProduct={addProduct} />
+
       <ProductTable
         products={products}
         onEditProduct={handleEditClick}
         onDeleteProduct={deleteProduct}
+        searchTerm={searchTerm}
+        onSearchChange={handleSearchChange}
       />
       {editingProduct && (
         <ProductUpdate

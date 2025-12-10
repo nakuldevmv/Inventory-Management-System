@@ -30,10 +30,11 @@
 }
 
 .input {
-    width: 90%;
+    max-width: 300px;
+    min-width: 250px;
     padding: 10px 14px;
     border-radius: 8px;
-    border: 1px solid #d1d5db;
+    border: 1px solid #94969a;
     background-color: #ffffff;
     font-size: 14px;
     color: #111827;

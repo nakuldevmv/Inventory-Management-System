@@ -6,6 +6,8 @@
     background-color: #ecffffff;
     align-items: start;
     border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
 }
 
 .ipContainer {
@@ -21,7 +23,7 @@
     width: 100%;
     padding: 10px 14px;
     border-radius: 8px;
-    border: 1px solid #d1d5db;
+    border: 1px solid #94969a;
     /* subtle gray border */
     background-color: #ffffff;
     font-size: 14px;

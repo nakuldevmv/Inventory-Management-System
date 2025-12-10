@@ -27,7 +27,18 @@ async function createProduct(req, res) {
 // GET /api/products
 async function getProducts(req, res) {
   try {
-    const products = await Product.find().sort({ createdAt: -1 });
+    const search = req.query.search || "";
+
+    const filter = search
+      ? {
+          $or: [
+            { name: { $regex: search, $options: "i" } },
+            { category: { $regex: search, $options: "i" } },
+          ],
+        }
+      : {};
+
+    const products = await Product.find(filter).sort({ createdAt: -1 });
     res.status(200).json(products);
   } catch (error) {
     console.log("Get Product Error:", error.message);

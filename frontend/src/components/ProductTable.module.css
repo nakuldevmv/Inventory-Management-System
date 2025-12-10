@@ -3,12 +3,52 @@
     margin-top: 40px;
     background-color: #ecffffff;
     border-radius: 15px;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.12);
+
 }
 
 .productTable {
     border-collapse: collapse;
     width: 100%;
     text-align: left;
+}
+
+.headBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: -5px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.searchInput {
+    height: 50%;
+    width: 100%;
+    max-width: 320px;
+    padding: 9px 12px;
+    padding-left: 10px;
+    border-radius: 10px;
+    border: 1px solid #94969a;
+    background-color: #ffffff;
+    font-size: 14px;
+    color: #111827;
+    outline: none;
+    transition: all 0.18s ease;
+    box-sizing: border-box;
+}
+
+.searchInput::placeholder {
+    color: #9ca3af;
+}
+
+.searchInput:hover {
+    border-color: #bfc5ce;
+}
+
+.searchInput:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.18);
 }
 
 
