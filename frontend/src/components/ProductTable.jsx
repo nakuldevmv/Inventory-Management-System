@@ -37,15 +37,15 @@ export default function ProductTable(props) {
       <div style={{ marginTop: "20px" }}>
         <h2>Products</h2>
         <table
-          style={{ borderCollapse: "collapse", width: "100%", textAlign: "left" }}
+          style={{
+            borderCollapse: "collapse",
+            width: "100%",
+            textAlign: "left",
+          }}
           border="1"
           cellPadding="15"
-          
         >
-          <thead 
-                    style={{textAlign: "center" }}
-
-          >
+          <thead style={{ textAlign: "center" }}>
             <tr style={{ backgroundColor: "#ecffffff" }}>
               <th>Name</th>
               <th>Category</th>

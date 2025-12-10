@@ -22,7 +22,7 @@ function App() {
     }
   }
   //POST
-  async function addProducts(formData) {
+  async function addProduct(formData) {
     try {
       const res = await api.post("products", formData);
       setProducts((prev) => {
@@ -35,7 +35,7 @@ function App() {
 
   return (
     <>
-      <ProductForm onAddProducts={addProducts} />
+      <ProductForm onAddProduct={addProduct} />
       <ProductTable products={products} />
     </>
   );
