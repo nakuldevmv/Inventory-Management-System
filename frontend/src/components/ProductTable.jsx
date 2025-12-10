@@ -4,6 +4,12 @@ export default function ProductTable(props) {
   const products = props.products;
   console.log("ProductTable received products:", products);
 
+  function handleEditClick(product) {
+    if (props.onEditProduct) {
+      props.onEditProduct(product);
+    }
+  }
+
   function renderRow() {
     if (!products || products.length === 0) {
       return (
@@ -26,6 +32,9 @@ export default function ProductTable(props) {
             <td>{product.category}</td>
             <td>{product.quantity}</td>
             <td>{product.price}</td>
+            <td>
+              <button onClick={()=>{handleEditClick(product)}}>Edit</button>
+            </td>
           </tr>
         </>
       );
