@@ -52,6 +52,22 @@ function App() {
     }
   }
 
+  //DELETE
+  async function deleteProduct(id) {
+    try {
+      const res = await api.delete("/products/" + id);
+      setProducts((prev) => {
+        return prev.filter((p) => {
+          return p._id !== id;
+        });
+      });
+      if (editingProduct && editingProduct._id === id) {
+        setEditingProduct(null);
+      }
+    } catch (error) {
+      console.log("Error deleting product:", error);
+    }
+  }
   function handleEditClick(product) {
     setEditingProduct(product);
   }
@@ -63,7 +79,13 @@ function App() {
   return (
     <>
       <ProductForm onAddProduct={addProduct} />
-      <ProductTable products={products} onEditProduct={handleEditClick} />
+
+      <ProductTable
+        products={products}
+        onEditProduct={handleEditClick}
+        onDeleteProduct={deleteProduct}
+      />
+
       {editingProduct && (
         <ProductUpdate
           product={editingProduct}

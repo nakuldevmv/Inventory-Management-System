@@ -9,13 +9,24 @@ export default function ProductTable(props) {
       props.onEditProduct(product);
     }
   }
+  function handleDeleteClick(product) {
+    let confirmDelete = window.confirm(
+      `Are you sure you want to delete the product ${product.name}?`
+    );
+    if (!confirmDelete) {
+      return;
+    }
+    if (props.onDeleteProduct) {
+      props.onDeleteProduct(product._id);
+    }
+  }
 
   function renderRow() {
     if (!products || products.length === 0) {
       return (
         <>
           <tr>
-            <td colSpan="4">No products available</td>
+            <td colSpan="5" style={{textAlign:"center", fontWeight:"bold"}}>No products available</td>
           </tr>
         </>
       );
@@ -32,8 +43,22 @@ export default function ProductTable(props) {
             <td>{product.category}</td>
             <td>{product.quantity}</td>
             <td>{product.price}</td>
-            <td>
-              <button onClick={()=>{handleEditClick(product)}}>Edit</button>
+            <td style={{textAlign:"center"}}>
+              <button
+                onClick={() => {
+                  handleEditClick(product);
+                }}
+              >
+                Edit
+              </button>
+              {" "}
+              <button
+                onClick={() => {
+                  handleDeleteClick(product);
+                }}
+              >
+                Delete
+              </button>
             </td>
           </tr>
         </>
@@ -60,6 +85,7 @@ export default function ProductTable(props) {
               <th>Category</th>
               <th>Quantity</th>
               <th>Price</th>
+              <th>Edit/Delete</th>
             </tr>
           </thead>
           <tbody>{renderRow()}</tbody>
