@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import style from "./ProductUpdate.module.css";
 
 export default function ProductUpdate(props) {
   const product = props.product;
@@ -69,55 +70,89 @@ export default function ProductUpdate(props) {
 
   return (
     <>
-      <div>
-        <h2>Edit Product</h2>
-
-        <form onSubmit={handleSubmit}>
-          <label>
-            Name:{" "}
+      <div className={style.updateContainer}>
+        <form onSubmit={handleSubmit} className={style.ipContainer}>
+          <h2 style={{ marginBottom: "-35px" }}>Edit Product</h2>
+          <p style={{ fontSize: "14px" }}>
+            Fields marked with{" "}
+            <span style={{ color: "red", fontSize: "16px" }}>*</span> are
+            required.
+          </p>
+          <label
+            style={{ textAlign: "left", fontSize: "14px", fontWeight: "bold" }}
+          >
+            Product Name<span style={{ color: "red" }}>*</span>
             <input
               type="text"
               value={name}
               onChange={handleNameChange}
               placeholder="Product Name"
+              className={style.input}
             />
-          </label>{" "}
-          <br />
-          <label>
-            Category:{" "}
+          </label>
+
+          <label
+            style={{ textAlign: "left", fontSize: "14px", fontWeight: "bold" }}
+          >
+            Product Category
             <input
               type="text"
               value={category}
               onChange={handleCategoryChange}
               placeholder="Category"
+              className={style.input}
             />
-          </label>{" "}
-          <br />
-          <label>
-            Quantity:{" "}
+          </label>
+
+          <label
+            style={{ textAlign: "left", fontSize: "14px", fontWeight: "bold" }}
+          >
+            Quantity<span style={{ color: "red" }}>*</span>
             <input
               type="text"
               value={quantity}
               onChange={handleQuantityChange}
               placeholder="Quantity"
+              className={style.input}
             />
-          </label>{" "}
-          <br />
-          <label>
-            Price:{" "}
+          </label>
+
+          <label
+            style={{ textAlign: "left", fontSize: "14px", fontWeight: "bold" }}
+          >
+            Price<span style={{ color: "red" }}>*</span>
             <input
               type="text"
               value={price}
               onChange={handlePriceChange}
               placeholder="Price"
+              className={style.input}
             />
-          </label>{" "}
-          <br />
-          {error && <p style={{ color: "red" }}>{error}</p>} <br />
-          <button type="submit">Update</button>
-          <button type="button" onClick={handleCancelClick}>
-            Cancel
-          </button>
+          </label>
+          <div>
+            <button type="submit" className={style.button}>
+              Update
+            </button>{" "}
+            <button
+              type="button"
+              onClick={handleCancelClick}
+              className={style.buttonCancel}
+            >
+              Cancel
+            </button>
+          </div>
+          {error && (
+            <p
+              style={{
+                color: "red",
+                fontSize: "14px",
+                marginTop: "-5px",
+                marginBottom: "-5px",
+              }}
+            >
+              {error}
+            </p>
+          )}
         </form>
       </div>
     </>

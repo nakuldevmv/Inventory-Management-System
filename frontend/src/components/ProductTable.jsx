@@ -1,5 +1,7 @@
 import React from "react";
 
+import styles from "./ProductTable.module.css";
+
 export default function ProductTable(props) {
   const products = props.products;
   console.log("ProductTable received products:", products);
@@ -26,7 +28,9 @@ export default function ProductTable(props) {
       return (
         <>
           <tr>
-            <td colSpan="5" style={{textAlign:"center", fontWeight:"bold"}}>No products available</td>
+            <td colSpan="5" style={{ textAlign: "center", fontWeight: "bold" }}>
+              No products available
+            </td>
           </tr>
         </>
       );
@@ -37,22 +41,26 @@ export default function ProductTable(props) {
         <>
           <tr
             key={product._id}
-            style={{ backgroundColor: lowStock ? "#ff4d4dff" : "#fffce2ff" }}
+            style={{
+              backgroundColor: lowStock ? "#ff0000ff" : "#fffce7ff",
+              color: lowStock ? "white" : "black",
+            }}
           >
             <td>{product.name}</td>
             <td>{product.category}</td>
             <td>{product.quantity}</td>
-            <td>{product.price}</td>
-            <td style={{textAlign:"center"}}>
+            <td>₹{product.price}</td>
+            <td style={{ textAlign: "center" }}>
               <button
+                className={styles.editbtn}
                 onClick={() => {
                   handleEditClick(product);
                 }}
               >
                 Edit
-              </button>
-              {" "}
+              </button>{" "}
               <button
+                className={styles.dltbtn}
                 onClick={() => {
                   handleDeleteClick(product);
                 }}
@@ -67,30 +75,20 @@ export default function ProductTable(props) {
   }
 
   return (
-    <>
-      <div style={{ marginTop: "20px" }}>
-        <h2>Products</h2>
-        <table
-          style={{
-            borderCollapse: "collapse",
-            width: "100%",
-            textAlign: "left",
-          }}
-          border="1"
-          cellPadding="15"
-        >
-          <thead style={{ textAlign: "center" }}>
-            <tr style={{ backgroundColor: "#ecffffff" }}>
-              <th>Name</th>
-              <th>Category</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>Edit/Delete</th>
-            </tr>
-          </thead>
-          <tbody>{renderRow()}</tbody>
-        </table>
-      </div>
-    </>
+    <div className={styles.productTableContainer}>
+      <h2>Products</h2>
+      <table className={styles.productTable} border="1" cellPadding="15">
+        <thead style={{ textAlign: "center" }}>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Edit/Delete</th>
+          </tr>
+        </thead>
+        <tbody>{renderRow()}</tbody>
+      </table>
+    </div>
   );
 }

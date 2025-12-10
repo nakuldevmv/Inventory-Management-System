@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import style from "./ProductForm.module.css";
 
 export default function ProductForm(props) {
   const [name, setName] = useState("");
@@ -57,48 +58,62 @@ export default function ProductForm(props) {
 
   return (
     <>
-      <div>
-        <h2>Add Product</h2>
+      <div className={style.formContainer}>
+        <h2 style={{ marginBottom: "-20px" }}>Add Product</h2>
 
-        <form onSubmit={handleSubmit}>
-          <label>
-            Name:{" "}
-            <input
-              type="text"
-              value={name}
-              onChange={handleNameChange}
-              placeholder="Product Name"
-            />
-          </label> <br />
-          <label>
-            Category:{" "}
-            <input
-              type="text"
-              value={category}
-              onChange={handleCategoryChange}
-              placeholder="Category"
-            />
-          </label> <br />
-          <label>
-            Quantity:{" "}
-            <input
-              type="text"
-              value={quantity}
-              onChange={handleQuantityChange}
-              placeholder="Quantity"
-            />
-          </label> <br />
-          <label>
-            Price:{" "}
-            <input
-              type="text"
-              value={price}
-              onChange={handlePriceChange}
-              placeholder="Price"
-            />
-          </label> <br />
-          {error && <p style={{ color: "red" }}>{error}</p>} <br />
-          <button type="submit">Add</button>
+        <p style={{ fontSize: "14px" }}>
+          Fields marked with{" "}
+          <span style={{ color: "red", fontSize: "16px" }}>*</span> are
+          required.
+        </p>
+
+        <form onSubmit={handleSubmit} className={style.ipContainer}>
+          <input
+            type="text"
+            value={name}
+            onChange={handleNameChange}
+            placeholder="Product Name*"
+            className={style.input}
+          />
+
+          <input
+            type="text"
+            value={category}
+            onChange={handleCategoryChange}
+            placeholder="Category"
+            className={style.input}
+          />
+
+          <input
+            type="text"
+            value={quantity}
+            onChange={handleQuantityChange}
+            placeholder="Quantity*"
+            className={style.input}
+          />
+
+          <input
+            type="text"
+            value={price}
+            onChange={handlePriceChange}
+            placeholder="Price*"
+            className={style.input}
+          />
+          <button type="submit" className={style.button}>
+            Add
+          </button>
+          {error && (
+            <p
+              style={{
+                color: "red",
+                fontSize: "14px",
+                marginTop: "-5px",
+                marginBottom: "-5px",
+              }}
+            >
+              {error}
+            </p>
+          )}
         </form>
       </div>
     </>

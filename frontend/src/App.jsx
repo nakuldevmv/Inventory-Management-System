@@ -5,6 +5,7 @@ import ProductForm from "./components/ProductForm";
 import ProductTable from "./components/ProductTable";
 import ProductUpdate from "./components/ProductUpdate";
 
+
 function App() {
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
@@ -68,6 +69,7 @@ function App() {
       console.log("Error deleting product:", error);
     }
   }
+
   function handleEditClick(product) {
     setEditingProduct(product);
   }
@@ -77,15 +79,15 @@ function App() {
   }
 
   return (
-    <>
-      <ProductForm onAddProduct={addProduct} />
+    <div className="App">
+      <h1> Inventory Management System</h1>
 
+      <ProductForm onAddProduct={addProduct} />
       <ProductTable
         products={products}
         onEditProduct={handleEditClick}
         onDeleteProduct={deleteProduct}
       />
-
       {editingProduct && (
         <ProductUpdate
           product={editingProduct}
@@ -93,7 +95,7 @@ function App() {
           onCancelEdit={handleCancelEdit}
         />
       )}
-    </>
+    </div>
   );
 }
 
